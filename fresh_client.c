@@ -1,10 +1,14 @@
 /*
     C ECHO client example using sockets
 */
-#include<stdio.h> //printf
-#include<string.h>    //strlen
-#include<sys/socket.h>    //socket
-#include<arpa/inet.h> //inet_addr
+#include <stdio.h> //printf
+#include <stdlib.h>
+#include <string.h>    //strlen
+#include <unistd.h>
+#include <sys/socket.h>    //socket
+#include <arpa/inet.h> //inet_addr
+#include <sys/types.h>
+#include <netinet/in.h>
  
 int main(int argc , char *argv[])
 {
@@ -31,13 +35,19 @@ int main(int argc , char *argv[])
         return 1;
     }
     puts("connections success");
-	strcpy(message, "msg from client");
+	//strcpy(message, "darci is the best mofo");
 	int s, recieve;
 	
-	if( send(sock, message, strlen(message), 0) < 0)
-	{
-		puts("Error while sending");
-	}
+	while(1)
+    {
+        printf("Enter a message to send to server");
+        fgets(message, sizeof(message), stdin);
+
+        if( send(sock, message, strlen(message), 0) < 0)
+	    {
+		    puts("Error while sending");
+	    }
+    }
 	puts("message has been sent");
    
      

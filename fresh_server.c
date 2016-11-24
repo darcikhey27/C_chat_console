@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
     int client_socket;
     struct sockaddr_in client_addr;
     
+    
     client_socket = accept(socket_dh, (struct sockaddr *)&client_addr,(socklen_t*)&client_socket); 
     printf("client socket %d\n", client_socket); 
     
@@ -43,7 +44,7 @@ int main(int argc, char *argv[])
    int count;
    char recv_buf[1000];
    count = recv(client_socket, recv_buf, 2000, 0);
-   printf("msg from client %s\n", recv_buf);
+   printf("the message from client is %s\n", recv_buf);
 	
  	
 
