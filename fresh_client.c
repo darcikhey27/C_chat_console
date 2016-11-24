@@ -1,6 +1,6 @@
 /*
-    C ECHO client example using sockets
-*/
+   C ECHO client example using sockets
+   */
 #include <stdio.h> //printf
 #include <stdlib.h>
 #include <string.h>    //strlen
@@ -9,13 +9,13 @@
 #include <arpa/inet.h> //inet_addr
 #include <sys/types.h>
 #include <netinet/in.h>
- 
+
 int main(int argc , char *argv[])
 {
     int sock;
     struct sockaddr_in server;
     char message[1000] , server_reply[2000];
-     
+
     //Create socket
     sock = socket(AF_INET , SOCK_STREAM , 0);
     if (sock == -1)
@@ -23,11 +23,11 @@ int main(int argc , char *argv[])
         printf("Could not create socket");
     }
     puts("Socket created");
-     
+
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
     server.sin_family = AF_INET;
     server.sin_port = htons( 8888 );
- 
+
     //Connect to remote server
     if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
     {
@@ -35,46 +35,51 @@ int main(int argc , char *argv[])
         return 1;
     }
     puts("connections success");
-	//strcpy(message, "darci is the best mofo");
-	int s, recieve;
-	
-	while(1)
-    {
+    //strcpy(message, "darci is the best mofo");
+    int s, recieve;
+    while(1) {
         printf("Enter a message to send to server");
         fgets(message, sizeof(message), stdin);
 
         if( send(sock, message, strlen(message), 0) < 0)
-	    {
-		    puts("Error while sending");
-	    }
+        {
+            puts("Error while sending");
+        }
+        puts("message has been sent to the server");
+        getchar();
+        
+        char recv_buff[1000];
+        recv(sock, recv_buff, 2000, 0);
+        puts(recv_buff);
+
     }
-	puts("message has been sent");
-   
-     
+
+
+
     close(sock);
     return 0;
 }
 /*
- while(1)
-    {
-        printf("Enter message : ");
-        scanf("%s" , message);
-         
-        //Send some data
-        if( send(sock , message , strlen(message) , 0) < 0)
-        {
-            puts("Send failed");
-            return 1;
-        }
-         
-        //Receive a reply from the server
-        if( recv(sock , server_reply , 2000 , 0) < 0)
-        {
-            puts("recv failed");
-            break;
-        }
-         
-        puts("Server reply :");
-        puts(server_reply);
-    }
+   while(1)
+   {
+   printf("Enter message : ");
+   scanf("%s" , message);
+
+//Send some data
+if( send(sock , message , strlen(message) , 0) < 0)
+{
+puts("Send failed");
+return 1;
+}
+
+//Receive a reply from the server
+if( recv(sock , server_reply , 2000 , 0) < 0)
+{
+puts("recv failed");
+break;
+}
+
+puts("Server reply :");
+puts(server_reply);
+}
 */
