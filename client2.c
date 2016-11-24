@@ -30,11 +30,22 @@ int main(int argc , char *argv[])
         perror("connect failed. Error");
         return 1;
     }
+    puts("connections success");
+	strcpy(message, "msg from client");
+	int s, recieve;
+	
+	if( send(sock, message, strlen(message), 0) < 0)
+	{
+		puts("Error while sending");
+	}
+	puts("message has been sent");
+   
      
-    puts("Connected\n");
-     
-    //keep communicating with server
-    while(1)
+    close(sock);
+    return 0;
+}
+/*
+ while(1)
     {
         printf("Enter message : ");
         scanf("%s" , message);
@@ -56,7 +67,4 @@ int main(int argc , char *argv[])
         puts("Server reply :");
         puts(server_reply);
     }
-     
-    close(sock);
-    return 0;
-}
+*/

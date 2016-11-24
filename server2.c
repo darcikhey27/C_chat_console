@@ -44,7 +44,8 @@ int main(int argc , char *argv[])
     c = sizeof(struct sockaddr_in);
      
     //accept connection from an incoming client
-    client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c);
+    client_sock = 
+    accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c);
     if (client_sock < 0)
     {
         perror("accept failed");
