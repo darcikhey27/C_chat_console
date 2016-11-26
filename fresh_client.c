@@ -38,19 +38,20 @@ int main(int argc , char *argv[])
     //strcpy(message, "darci is the best mofo");
     int s, recieve;
     while(1) {
-        printf("Enter a message to send to server");
+        printf("Enter a message to send to server ");
         fgets(message, sizeof(message), stdin);
 
-        if( send(sock, message, strlen(message), 0) < 0)
+        if( send(sock, message, strlen(message), 0) < 0 )
         {
             puts("Error while sending");
         }
         puts("message has been sent to the server");
-        getchar();
         
         char recv_buff[1000];
-        recv(sock, recv_buff, 2000, 0);
+        int recv_status;
+        recv_status = recv(sock, recv_buff, 2000, 0);
         puts(recv_buff);
+        printf("recv_status %d\n", recv_status);
 
     }
 

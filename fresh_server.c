@@ -35,19 +35,25 @@ int main(int argc, char *argv[])
     puts("Wating for client");
     int client_socket;
     struct sockaddr_in client_addr;
-
-
     client_socket = accept(socket_dh, (struct sockaddr *)&client_addr,(socklen_t*)&client_socket); 
     printf("connection established with client discriptor is %d\n", client_socket); 
 
 
-    while(1) {
+    while(1) 
+    {
         // recieve the message and send somthing back
         int count;
         char recv_buf[1000];
         count = recv(client_socket, recv_buf, 2000, 0);
+        printf("count %d\n", count);
         printf("the message from client is %s\n", recv_buf);
-        
-        send(client_socket, "From server: I got you msg", 2000, 0);
+        int send_status; 
+        send_status = send(client_socket, recv_buf, 2000, 0);
+        printf("send_status %d\n", send_status);
+        recv_buf[0] = '\0';
     }
+    
+    
+    close(socket_dh);
+    return 0;
 }// end main
