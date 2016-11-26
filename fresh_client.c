@@ -38,8 +38,7 @@ int main(int argc , char *argv[])
     //strcpy(message, "darci is the best mofo");
     int s, recieve;
     while(1) {
-        printf("Enter a message to send to server ");
-        fgets(message, sizeof(message), stdin);
+        printf("Enter a message to send to server "); fgets(message, sizeof(message), stdin);
 
         if( send(sock, message, strlen(message), 0) < 0 )
         {
