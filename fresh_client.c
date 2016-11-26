@@ -12,10 +12,15 @@
 
 int main(int argc , char *argv[])
 {
+    /* get the ip and port from argv */
+    char *server_ip = argv[1]; 
+    int port = atoi(argv[2]);
+    printf("argc %d\n", argc);
     int sock;
     struct sockaddr_in server;
     char message[1000] , server_reply[2000];
 
+    
     //Create socket
     sock = socket(AF_INET , SOCK_STREAM , 0);
     if (sock == -1)
@@ -23,10 +28,9 @@ int main(int argc , char *argv[])
         printf("Could not create socket");
     }
     puts("Socket created");
-
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_addr.s_addr = inet_addr(server_ip);
     server.sin_family = AF_INET;
-    server.sin_port = htons( 8888 );
+    server.sin_port = htons( port );
 
     //Connect to remote server
     if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
@@ -37,26 +41,29 @@ int main(int argc , char *argv[])
     puts("connections success");
     //strcpy(message, "darci is the best mofo");
     int s, recieve;
-    while(1) {
-        printf("Enter a message to send to server "); fgets(message, sizeof(message), stdin);
+    
+    printf("Enter a message to send to server "); 
+    while(1) 
+    {
+        fgets(message, sizeof(message), stdin);
 
         if( send(sock, message, strlen(message), 0) < 0 )
         {
             puts("Error while sending");
         }
-        puts("message has been sent to the server");
+        //puts("message has been sent to the server");
         
         char recv_buff[1000];
         int recv_status;
         recv_status = recv(sock, recv_buff, 2000, 0);
+        printf("Client1: ");
         puts(recv_buff);
-        printf("recv_status %d\n", recv_status);
+        //printf("recv_status %d\n", recv_status);
+        recv_buff[0] = '\0';
 
     }
 
-
-
-    close(sock);
+    close(sock); 
     return 0;
 }
 /*
