@@ -56,7 +56,7 @@ int main(int argc , char *argv[])
         char recv_buff[1000];
         int recv_status;
         recv_status = recv(sock, recv_buff, 2000, 0);
-        printf("Client1: ");
+        //printf("Client1: ");
         puts(recv_buff);
         //printf("recv_status %d\n", recv_status);
         recv_buff[0] = '\0';

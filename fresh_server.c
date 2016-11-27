@@ -44,15 +44,15 @@ int main(int argc, char *argv[])
         // recieve the message and send somthing back
         int count;
         char recv_buf[1000];
-        char client_str[100] = "Client";
+        char client_str[100] = "Client: ";
         count = recv(client_socket, recv_buf, 2000, 0);
         //printf("count %d\n", count);
         //printf("the message from client is %s\n", recv_buf);
         int send_status;
         
         strcat(client_str,  recv_buf);
-        printf("client_str%s\n", client_str);
-        printf("recv_buf%s\n", recv_buf);
+       // printf("client_str%s\n", client_str);
+       // printf("recv_buf%s\n", recv_buf);
         
         send_status = send(client_socket,client_str, 2000, 0);
         //printf("send_status %d\n", send_status);
