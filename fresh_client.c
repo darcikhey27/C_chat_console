@@ -20,8 +20,8 @@ int main(int argc , char *argv[])
     struct sockaddr_in server;
     char message[1000] , server_reply[2000];
 
-    
-    //Create socket
+
+    // (1) Create socket
     sock = socket(AF_INET , SOCK_STREAM , 0);
     if (sock == -1)
     {
@@ -32,7 +32,7 @@ int main(int argc , char *argv[])
     server.sin_family = AF_INET;
     server.sin_port = htons( port );
 
-    //Connect to remote server
+    // (2) Connect to remote server
     if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
     {
         perror("connect failed. Error");
@@ -41,20 +41,21 @@ int main(int argc , char *argv[])
     puts("connections success");
     //strcpy(message, "darci is the best mofo");
     int s, recieve;
-    
+
     printf("Enter a message to send to server "); 
     while(1) 
     {
         fgets(message, sizeof(message), stdin);
-
+        // (3) send to server 
         if( send(sock, message, strlen(message), 0) < 0 )
         {
             puts("Error while sending");
         }
         //puts("message has been sent to the server");
-        
+
         char recv_buff[1000];
         int recv_status;
+        // recieve from server 
         recv_status = recv(sock, recv_buff, 2000, 0);
         //printf("Client1: ");
         puts(recv_buff);
@@ -66,27 +67,3 @@ int main(int argc , char *argv[])
     close(sock); 
     return 0;
 }
-/*
-   while(1)
-   {
-   printf("Enter message : ");
-   scanf("%s" , message);
-
-//Send some data
-if( send(sock , message , strlen(message) , 0) < 0)
-{
-puts("Send failed");
-return 1;
-}
-
-//Receive a reply from the server
-if( recv(sock , server_reply , 2000 , 0) < 0)
-{
-puts("recv failed");
-break;
-}
-
-puts("Server reply :");
-puts(server_reply);
-}
-*/
