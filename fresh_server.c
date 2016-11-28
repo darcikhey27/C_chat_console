@@ -59,7 +59,8 @@ int main(int argc, char *argv[])
         // send stuff to client with send command
         send_status = send(client_socket,client_str, 2000, 0);
         //printf("send_status %d\n", send_status);
-        recv_buf[0] = '\0'; // clear string
+        //recv_buf[0] = '\0'; // clear string
+	memset(recv_buf, 0, sizeof(recv_buf));
     }
 
     close(socket_dh);
