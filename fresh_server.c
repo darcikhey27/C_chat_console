@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
         // recieve the message and send somthing back
         int count;
         char recv_buf[1000];
-        char client_str[100] = "Client: ";
+        char client_str[100] = "(server is replying) ";
 
         // recieve data from client from recv command
         count = recv(client_socket, recv_buf, 2000, 0);
