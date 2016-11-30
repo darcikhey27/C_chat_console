@@ -1,12 +1,15 @@
-/*
-   C ECHO client example using sockets
-   */
-#include <stdio.h> //printf
+/* Darci K Saucedo
+ * Marco Gallegos 
+ * Eastern Washington University 
+ *
+ * <mind wide open>
+ */
+#include <stdio.h> 
 #include <stdlib.h>
-#include <string.h>    //strlen
+#include <string.h>
 #include <unistd.h>
-#include <sys/socket.h>    //socket
-#include <arpa/inet.h> //inet_addr
+#include <sys/socket.h>
+#include <arpa/inet.h>
 #include <sys/types.h>
 #include <netinet/in.h>
 
@@ -39,9 +42,8 @@ int main(int argc , char *argv[])
         return 1;
     }
     puts("connections success");
-    //strcpy(message, "darci is the best mofo");
+	
     int s, recieve;
-
     printf("Enter a message to send to server "); 
     while(1) 
     {
@@ -63,7 +65,6 @@ int main(int argc , char *argv[])
         recv_buff[0] = '\0';
 
     }
-
     close(sock); 
     return 0;
 }

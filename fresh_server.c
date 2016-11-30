@@ -1,3 +1,9 @@
+/* Darci K Saucedo
+ * Marco Gallegos 
+ * Eastern Washington University 
+ *
+ * <mind wide open>
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,7 +11,6 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-
 
 int main(int argc, char *argv[])
 {
@@ -56,11 +61,9 @@ int main(int argc, char *argv[])
         // string concatanation 
         strcat(client_str,  recv_buf);
 
-        // send stuff to client with send command
+        // send data to client with send command
         send_status = send(client_socket,client_str, 2000, 0);
-        //printf("send_status %d\n", send_status);
-        //recv_buf[0] = '\0'; // clear string
-	memset(recv_buf, 0, sizeof(recv_buf));
+		memset(recv_buf, 0, sizeof(recv_buf));
     }
 
     close(socket_dh);
