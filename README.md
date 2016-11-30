@@ -1,2 +1,3 @@
 # C_chat_console
-Chat program using the C language 
+basic client server socket programming in C
+
